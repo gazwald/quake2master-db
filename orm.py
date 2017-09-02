@@ -130,7 +130,7 @@ class Player(Base):
 
 
 class State(Base):
-    __tablename__ = 'query'
+    __tablename__ = 'state'
     id = Column(Integer, primary_key=True)
     running = Column(Boolean)
     started = Column(DateTime)
