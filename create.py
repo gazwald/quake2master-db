@@ -2,7 +2,7 @@
 import configparser
 from sqlalchemy import create_engine
 
-from database.orm import Base
+from orm import Base
 
 config = configparser.ConfigParser()
 config.read('config.ini')
