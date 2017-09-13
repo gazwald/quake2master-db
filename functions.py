@@ -21,7 +21,7 @@ def get_or_create(session, model, **kwargs):
         return instance
 
 
-def create_session():
+def create_db_conn():
     config = configparser.ConfigParser()
     config.read('config.ini')
     dbstring = '{provider}://{username}:{password}@{host}:{port}/{database}'
@@ -31,5 +31,10 @@ def create_session():
                                            host=config['database']['host'],
                                            port=config['database']['port'],
                                            database=config['database']['database']))
+
+    return engine
+
+
+def create_db_session(engine):
     Session = sessionmaker(bind=engine)
     return Session()
