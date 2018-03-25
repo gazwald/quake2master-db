@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-from marshmallow import Schema, fields
+from marshmallow import Schema, fields, ValidationError
+
+
+def must_not_be_blank(data):
+    if not data:
+        raise ValidationError('Data not provided.')
 
 
 class VersionSchema(Schema):
