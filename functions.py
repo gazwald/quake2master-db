@@ -21,16 +21,16 @@ def get_or_create(session, model, **kwargs):
         return instance
 
 
-def create_db_conn():
+def create_db_conn(environment):
     config = configparser.ConfigParser()
     config.read('config.ini')
     dbstring = '{provider}://{username}:{password}@{host}:{port}/{database}'
-    engine = create_engine(dbstring.format(provider=config['database'].get('provider', 'postgresql'),
-                                           username=config['database']['username'],
-                                           password=config['database']['password'],
-                                           host=config['database']['host'],
-                                           port=config['database']['port'],
-                                           database=config['database']['database']))
+    engine = create_engine(dbstring.format(provider=config[environment].get('provider', 'postgresql'),
+                                           username=config[environment]['username'],
+                                           password=config[environment]['password'],
+                                           host=config[environment]['host'],
+                                           port=config[environment]['port'],
+                                           production=config[environment]['database']))
 
     return engine
 
