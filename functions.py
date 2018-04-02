@@ -30,7 +30,7 @@ def create_db_conn(environment):
                                            password=config[environment]['password'],
                                            host=config[environment]['host'],
                                            port=config[environment]['port'],
-                                           production=config[environment]['database']))
+                                           database=config[environment]['database']))
 
     return engine
 
