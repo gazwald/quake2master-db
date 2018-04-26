@@ -18,7 +18,7 @@ Base = declarative_base()
 class Version(Base):
     __tablename__ = 'version'
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), index=True, unique=True)
+    name = Column(String(128), index=True, unique=True)
 
     def __repr__(self):
         return self.name
@@ -27,7 +27,7 @@ class Version(Base):
 class Game(Base):
     __tablename__ = 'game'
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), index=True, unique=True)
+    name = Column(String(128), index=True, unique=True)
 
     def __repr__(self):
         return self.name
@@ -36,7 +36,7 @@ class Game(Base):
 class Gamename(Base):
     __tablename__ = 'gamename'
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), index=True, unique=True)
+    name = Column(String(128), index=True, unique=True)
 
     def __repr__(self):
         return self.name
@@ -45,7 +45,7 @@ class Gamename(Base):
 class Map(Base):
     __tablename__ = 'map'
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), index=True, unique=True)
+    name = Column(String(128), index=True, unique=True)
 
     def __repr__(self):
         return self.name
@@ -86,7 +86,7 @@ class Server(Base):
 class Status(Base):
     __tablename__ = 'status'
     id = Column(Integer, primary_key=True)
-    hostname = Column(String(250))
+    hostname = Column(String(128))
     cheats = Column(SmallInteger)
     needpass = Column(SmallInteger)
     deathmatch = Column(SmallInteger)
@@ -118,7 +118,7 @@ class Status(Base):
 class Player(Base):
     __tablename__ = 'player'
     id = Column(BigInteger, primary_key=True)
-    name = Column(String(250))
+    name = Column(String(128))
     score = Column(SmallInteger)
     ping = Column(SmallInteger)
 
