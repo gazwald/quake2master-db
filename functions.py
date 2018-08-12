@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import configparser
+import sys
+import os
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -23,13 +25,13 @@ def get_or_create(session, model, **kwargs):
 
 def create_db_conn(environment):
     config = configparser.ConfigParser()
-    config.read('config.ini')
+    config.read(os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])), 'config.ini'))
     dbstring = '{provider}://{username}:{password}@{host}:{port}/{database}'
     engine = create_engine(dbstring.format(provider=config[environment].get('provider', 'postgresql'),
                                            username=config[environment]['username'],
                                            password=config[environment]['password'],
-                                           host=config[environment]['host'],
-                                           port=config[environment]['port'],
+                                           host=config[environment].get('host', 'localhost'),
+                                           port=config[environment].get('port', '5432'),
                                            database=config[environment]['database']))
 
     return engine
